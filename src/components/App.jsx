@@ -10,12 +10,12 @@ export default function App() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
-  useEffect(() => {
-    if (contacts) {
-      return;
-    }
-    dispatch(getContacts());
-  }, [contacts, dispatch]);
+  // useEffect(() => {
+  //   if (contacts) {
+  //     return;
+  //   }
+  //   dispatch(getContacts());
+  // }, [contacts, dispatch]);
   return (
     <div className={css.container}>
       <h1>Phonebook</h1>
