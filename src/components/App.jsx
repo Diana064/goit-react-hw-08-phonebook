@@ -1,14 +1,15 @@
-import ContactForm from './form/ContactForm';
-import css from './App.module.css';
-import { ContactList } from './contactList/ContactList';
-import { Filter } from './filter/Filter';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { getContacts } from 'redux/selectors';
+import { Route, Routes } from 'react-router-dom';
+import { getContacts } from '../redux/selectors';
+import { ContactsPage } from '../pages/ContactsPage';
+import { Home } from '../pages/Home';
+import { LoginPage } from '../pages/LoginPage';
+import { RegisterPage } from '../pages/RegisterPage';
+import { AppBar } from './AppBar/AppBar';
+import { Navigation } from './Navigation/Navigation';
 
 export default function App() {
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  // const dispatch = useDispatch();
+  // const contacts = useSelector(getContacts);
 
   // useEffect(() => {
   //   if (contacts) {
@@ -17,12 +18,16 @@ export default function App() {
   //   dispatch(getContacts());
   // }, [contacts, dispatch]);
   return (
-    <div className={css.container}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h1>Contacts</h1>
-      <Filter />
-      <ContactList />
-    </div>
+    <>
+      <AppBar />
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
