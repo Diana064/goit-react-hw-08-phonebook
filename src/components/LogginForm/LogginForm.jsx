@@ -29,7 +29,7 @@ export const LogginForm = () => {
     <div>
       <h1>Page of Loggin</h1>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <form onSubmit={handleSubmit} autoComplete="on">
         <label>
           Email
           <input

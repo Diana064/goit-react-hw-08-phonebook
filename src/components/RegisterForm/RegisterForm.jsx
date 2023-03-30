@@ -33,7 +33,7 @@ export const RegisterForm = () => {
     <div>
       <h1>Page of registration</h1>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <form onSubmit={handleSubmit} autoComplete="on">
         <label>
           Name
           <input type="text" name="name" value={name} onChange={handleChange} />

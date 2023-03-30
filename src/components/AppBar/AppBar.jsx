@@ -1,10 +1,18 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { AuthNav } from '../AuthNav/AuthNav';
+import UserMenu from '../UserMenu/UserMenu';
+import { Navigation } from '../Navigation/Navigation';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/selectors';
 
 export const AppBar = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   return (
     <>
-      <NavLink to="/login">Sign in</NavLink>
-      <NavLink to="/register">Sign up</NavLink>
+      <Navigation />
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+
       <Outlet />
     </>
   );
