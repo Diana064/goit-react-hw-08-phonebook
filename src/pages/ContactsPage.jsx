@@ -2,7 +2,7 @@ import { ContactList } from '../components/contactList/ContactList';
 import { Filter } from '../components/filter/Filter';
 import ContactForm from '../components/form/ContactForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectIsLoggedIn } from '../redux/selectors';
+import { selectIsLoggedIn } from '../redux/selectors';
 import { getContacts } from '../redux/operations';
 import { useEffect } from 'react';
 
