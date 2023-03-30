@@ -8,12 +8,11 @@ import { useEffect } from 'react';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(getContacts());
-  }, [contacts, dispatch]);
+  }, [dispatch]);
   return (
     <>
       <h1>This is your contacts book: </h1>
