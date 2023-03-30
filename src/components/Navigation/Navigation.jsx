@@ -1,10 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom';
-
+import { AiOutlineHome, AiOutlineBook } from 'react-icons/ai';
 export const Navigation = () => {
   return (
     <>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/contacts">Phonebook</NavLink>
+      <NavLink to="/">
+        <AiOutlineHome />
+      </NavLink>
+      <NavLink to="/contacts">
+        <AiOutlineBook />
+      </NavLink>
       <Outlet />
     </>
   );

@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../redux/auth-operations';
+import { selectIsLoggedIn } from '../../redux/selectors';
+import { LogginFormWrapper, Form } from './LogginForm.module';
 
 export const LogginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'email':
@@ -26,32 +28,38 @@ export const LogginForm = () => {
   };
 
   return (
-    <div>
-      <h1>Page of Loggin</h1>
+    <LogginFormWrapper>
+      {!isLoggedIn ? (
+        <>
+          {' '}
+          <h1>Page of Loggin</h1>
+          <Form onSubmit={handleSubmit} autoComplete="on">
+            <label>
+              Email
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+              />
+            </label>
 
-      <form onSubmit={handleSubmit} autoComplete="on">
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+            <label>
+              Password
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+              />
+            </label>
 
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-
-        <button type="submit">Войти</button>
-      </form>
-    </div>
+            <button type="submit">Sign in</button>
+          </Form>
+        </>
+      ) : (
+        <h2>Welcome</h2>
+      )}
+    </LogginFormWrapper>
   );
 };

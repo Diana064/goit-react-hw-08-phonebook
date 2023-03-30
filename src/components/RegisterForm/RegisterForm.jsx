@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth-operations';
+import { RegisterFormWrapper, Form } from './RegisterForm.module';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -30,10 +31,10 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div>
+    <RegisterFormWrapper>
       <h1>Page of registration</h1>
 
-      <form onSubmit={handleSubmit} autoComplete="on">
+      <Form onSubmit={handleSubmit} autoComplete="on">
         <label>
           Name
           <input type="text" name="name" value={name} onChange={handleChange} />
@@ -60,7 +61,7 @@ export const RegisterForm = () => {
         </label>
 
         <button type="submit">Register</button>
-      </form>
-    </div>
+      </Form>
+    </RegisterFormWrapper>
   );
 };

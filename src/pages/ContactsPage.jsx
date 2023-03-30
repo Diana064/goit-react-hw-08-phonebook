@@ -16,7 +16,7 @@ export const ContactsPage = () => {
   }, [contacts, dispatch]);
   return (
     <>
-      <h1>Contacts page</h1>
+      <h1>This is your contacts book: </h1>
       {isLoggedIn ? (
         <>
           <ContactForm />
@@ -24,7 +24,7 @@ export const ContactsPage = () => {
           <ContactList />
         </>
       ) : (
-        <h1>Please sign up or sign in </h1>
+        <p>Your contacts is unavailable. Please sign up or sign in! </p>
       )}
     </>
   );

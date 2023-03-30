@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { AuthNavWrapper } from './AuthNav.module';
+
 export const AuthNav = () => {
   return (
-    <div>
+    <AuthNavWrapper>
       <NavLink to="/login">Sign in</NavLink>
       <NavLink to="/register">Sign up</NavLink>
-    </div>
+    </AuthNavWrapper>
   );
 };
