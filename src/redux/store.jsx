@@ -21,13 +21,13 @@ const persistConfig = {
 
 export const persistedContactsReducer = persistReducer(
   persistConfig,
-  ContactsSlice.reducer
+  authSlice.reducer
 );
 export const store = configureStore({
   reducer: {
-    contacts: persistedContactsReducer,
+    contacts: ContactsSlice.reducer,
     filter: FilterSlice.reducer,
-    auth: authSlice.reducer,
+    auth: persistedContactsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
