@@ -17,7 +17,7 @@ import { authSlice } from './authSlice';
 const persistConfig = {
   key: 'contacts',
   storage,
-  // whitelist: ['token'],
+  whitelist: ['token'],
 };
 
 export const persistedContactsReducer = persistReducer(
