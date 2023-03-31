@@ -10,45 +10,52 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from '../redux/auth-operations';
 import { useAuth } from '../hooks/useAuth';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFetchingCurrentUser } from '../redux/selectors';
 
 export default function App() {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-
+  const isFetchingCurrentUser = useSelector(selectFetchingCurrentUser);
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
-    <AppWrapper>
-      <AppBar />
-      <Routes>
-        <Route index element={<Home />} />
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<RegisterPage />}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
-          }
-        />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-          }
-        />
-      </Routes>
-    </AppWrapper>
+  return (
+    !isFetchingCurrentUser &&
+    (isRefreshing ? (
+      <b>Refreshing user...</b>
+    ) : (
+      <AppWrapper>
+        <AppBar />
+        <Routes>
+          <Route index element={<Home />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            }
+          />
+        </Routes>
+      </AppWrapper>
+    ))
   );
 }
